@@ -1,12 +1,25 @@
 <div class="container mt-5">
-  <h1 class="text-center">Restaurants List</h1>
+  <h1 class="text-center mb-5">Restaurants List</h1>
     <ul>
       <% @restaurants.each do |restaurant| %>
         <li>
-          <div class="card-product m-3">
-            <img src="https://source.unsplash.com/featured/?{restaurant}">
-              <h2 class="ml-5"><%= restaurant.name %></h2>
-              <%= link_to 'Details', restaurant_path(restaurant), class: "btn btn-ghost ml-3" %>
+          <div class="card-product m-2">
+            <img src="https://source.unsplash.com/featured/?restaurant?sig">
+            <h2 class="m-3"><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
+            <p>Avg Rating:
+              <% if restaurant.reviews.average(:rating) %>
+                <% restaurant.reviews.average(:rating).to_i.ceil.times do %>
+                  <i class="fas fa-star"></i>
+                <% end %>
+                <% (5 - restaurant.reviews.average(:rating).to_i.ceil).times do %>
+                  <i class="far fa-star"></i>
+                <% end %>
+              <% else %>
+                <% 5.times do %>
+                  <i class="far fa-star"></i>
+                <% end %>
+              <% end %>
+            </p>
           </div>
         </li>
       <% end %>

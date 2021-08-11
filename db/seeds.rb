@@ -10,9 +10,9 @@ Restaurant.destroy_all
 puts "Cleaned!"
 
 puts "Creating Restaurants"
-5.times do
+10.times do
   Restaurant.create!(
-    name: Faker::Restaurant.name ,
+    name: Faker::Restaurant.name,
     address: Faker::Address.street_address,
     phone_number: Faker::PhoneNumber.cell_phone_in_e164,
     category: Restaurant::CATEGORY.sample

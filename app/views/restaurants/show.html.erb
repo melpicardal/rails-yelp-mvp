@@ -6,19 +6,23 @@
       <h2><%= @restaurant.name %></h2>
       <p><%= @restaurant.address %></p>
     </div>
-  <%= link_to "Add a review", new_restaurant_review_path(@restaurant), class: "btn btn-ghost" %>
+    <%= link_to "Add a review", new_restaurant_review_path(@restaurant), class: "btn btn-ghost" %>
     <h2 class="card-trip-pricing"><%= @restaurant.category.capitalize %> Restaurant</h2>
   </div>
 </div>
 
-  <% @restaurant.reviews.each do |review| %>
-    <div class="card mt-3">
-      <div class="card-body">
-      <p>Rating: <% review.rating.times do %> ⭐ <% end %></p>
-      <p>Review: <%= review.content %></p>
+<% @restaurant.reviews.each do |review| %>
+  <div class="card mt-3">
+    <div class="card-body">
+      <div class="d-flex">
+        <% review.rating.times do %>
+          <i class="fas fa-star"></i>
+        <% end %>
+        <% (5 - review.rating).times do %>
+          <i class="far fa-star"></i>
+        <% end %>
       </div>
+      <p class="mt-2">Review: <%= review.content %></p>
     </div>
-  <% end %>
-
-
-</div>
+  </div>
+<% end %>
