@@ -1,0 +1,24 @@
+<div class="container mt-3">
+<div class="card-trip">
+  <img src="https://source.unsplash.com/collection/1028299" />
+  <div class="card-trip-infos">
+    <div>
+      <h2><%= @restaurant.name %></h2>
+      <p><%= @restaurant.address %></p>
+    </div>
+  <%= link_to "Add a review", new_restaurant_review_path(@restaurant), class: "btn btn-ghost" %>
+    <h2 class="card-trip-pricing"><%= @restaurant.category.capitalize %> Restaurant</h2>
+  </div>
+</div>
+
+  <% @restaurant.reviews.each do |review| %>
+    <div class="card mt-3">
+      <div class="card-body">
+      <p>Rating: <% review.rating.times do %> ⭐ <% end %></p>
+      <p>Review: <%= review.content %></p>
+      </div>
+    </div>
+  <% end %>
+
+
+</div>
